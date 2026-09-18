@@ -1,8 +1,8 @@
 import { newArrivalsProducts, topSellingProducts } from '../src/Products.js';
-
-// 1. Close Announcement Bar
 const closeAnnouncementBtn = document.getElementById('close-announcement');
 const announcementBar = document.getElementById('announcement-bar');
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
 
 if (closeAnnouncementBtn && announcementBar) {
   closeAnnouncementBtn.addEventListener('click', () => {
@@ -10,9 +10,6 @@ if (closeAnnouncementBtn && announcementBar) {
   });
 }
 
-// 2. Toggle Mobile Navigation Menu
-const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-const mobileMenu = document.getElementById('mobile-menu');
 
 if (mobileMenuBtn && mobileMenu) {
   mobileMenuBtn.addEventListener('click', () => {
@@ -20,10 +17,7 @@ if (mobileMenuBtn && mobileMenu) {
   });
 }
 
-// Global Cart State (Initializes from LocalStorage)
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-// Save Cart State to LocalStorage and Update Header Badge
 function updateCartUI() {
   localStorage.setItem('cart', JSON.stringify(cart));
   
@@ -40,9 +34,8 @@ function updateCartUI() {
   }
 }
 
-// Add Product to Cart Action
 function addToCart(productId) {
-  // Always refresh cart state from localStorage in case it changed in another tab/page
+  // Always refresh cart state from localStorage 
   cart = JSON.parse(localStorage.getItem('cart')) || [];
 
   const allProducts = [...newArrivalsProducts, ...topSellingProducts];
@@ -60,7 +53,7 @@ function addToCart(productId) {
   updateCartUI();
 }
 
-// Helper Function: Generate Star Rating SVG Icons
+//Generate Star Rating SVG Icons
 function renderStars(rating) {
   const fullStars = Math.floor(rating);
   const hasHalfStar = rating % 1 !== 0;
@@ -88,10 +81,10 @@ function renderStars(rating) {
   return starsHTML;
 }
 
-// Function to Render Product Cards
+// Rendering Product Cards
 function renderProducts(products, containerId) {
   const container = document.getElementById(containerId);
-  if (!container) return; // Safely exits if container is not on the current page
+  if (!container) return; // 2 Safely exits if the container doesn't exist
 
   container.innerHTML = products.map(product => `
     <div class="flex flex-col group cursor-pointer">
@@ -135,13 +128,13 @@ function renderProducts(products, containerId) {
   `).join('');
 }
 
-// Event Delegation for Add to Cart Buttons
+// Event Listener for Add to Cart Buttons
 document.addEventListener('click', (e) => {
   if (e.target.classList.contains('add-to-cart-btn')) {
     const productId = Number(e.target.getAttribute('data-id'));
     addToCart(productId);
 
-    // Visual Feedback (Button Feedback)
+    //  Feedback
     const originalText = e.target.textContent;
     e.target.textContent = 'Added!';
     e.target.classList.replace('bg-black', 'bg-emerald-600');
@@ -153,13 +146,13 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// Sync Cart Count Badge whenever page loads or becomes active/focused
+//  Cart Count when active/focused {Sync}
 window.addEventListener('pageshow', () => {
   cart = JSON.parse(localStorage.getItem('cart')) || [];
   updateCartUI();
 });
 
-// Initializations
+// Init................
 document.addEventListener('DOMContentLoaded', () => {
   renderProducts(newArrivalsProducts, 'new-arrivals-grid');
   renderProducts(topSellingProducts, 'top-selling-grid');

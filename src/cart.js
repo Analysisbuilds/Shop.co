@@ -1,19 +1,14 @@
-// Global Cart State from LocalStorage
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 const DELIVERY_FEE = 15;
-
-// Elements
 const cartItemsContainer = document.getElementById('cart-items-container');
 const emptyCartView = document.getElementById('empty-cart-view');
 const cartContentView = document.getElementById('cart-content-view');
-
-// Summary Price Elements
 const subtotalElem = document.getElementById('summary-subtotal');
 const discountElem = document.getElementById('summary-discount');
 const deliveryElem = document.getElementById('summary-delivery');
 const totalElem = document.getElementById('summary-total');
 
-// Update Header Cart Count Badge
+//Cart Count Badge
 function updateHeaderCartBadge() {
   const cartCountElem = document.getElementById('cart-count');
   if (!cartCountElem) return;
@@ -29,7 +24,7 @@ function updateHeaderCartBadge() {
   }
 }
 
-// Render Cart Items and Calculations
+// Cart Items Calculate
 function renderCart() {
   updateHeaderCartBadge();
 
@@ -42,7 +37,7 @@ function renderCart() {
   emptyCartView.classList.add('hidden');
   cartContentView.classList.remove('hidden');
 
-  // Render Items List
+  // Items Listing
   cartItemsContainer.innerHTML = cart.map(item => `
     <div class="flex items-center gap-4 py-4 first:pt-0 last:pb-0">
       <!-- Item Image -->
@@ -100,24 +95,24 @@ function renderCart() {
   const discount = Math.round(subtotal * 0.20); // 20% discount calculation
   const total = subtotal - discount + (subtotal > 0 ? DELIVERY_FEE : 0);
 
-  // Update Summary UI
+  // Updating UI
   subtotalElem.textContent = `$${subtotal}`;
   discountElem.textContent = `-$${discount}`;
   deliveryElem.textContent = subtotal > 0 ? `$${DELIVERY_FEE}` : '$0';
   totalElem.textContent = `$${total}`;
 }
 
-// Persist Cart Changes to LocalStorage
+// Cart Change 2 LocalStorage
 function saveAndRefresh() {
   localStorage.setItem('cart', JSON.stringify(cart));
   renderCart();
 }
 
-// Event Delegation for Quantity & Delete Buttons
+// Delete Buttons
 document.addEventListener('click', (e) => {
   const target = e.target;
 
-  // Increase Quantity (+)
+  // Increasing selectred product (+)
   if (target.classList.contains('increase-qty-btn')) {
     const id = Number(target.getAttribute('data-id'));
     const item = cart.find(i => i.id === id);
@@ -127,7 +122,7 @@ document.addEventListener('click', (e) => {
     }
   }
 
-  // Decrease Quantity (-)
+  // Decreasing it (-)
   if (target.classList.contains('decrease-qty-btn')) {
     const id = Number(target.getAttribute('data-id'));
     const item = cart.find(i => i.id === id);
@@ -140,7 +135,7 @@ document.addEventListener('click', (e) => {
     }
   }
 
-  // Delete Item (Trash Bin)
+  // Delete 
   if (target.classList.contains('delete-item-btn')) {
     const id = Number(target.getAttribute('data-id'));
     cart = cart.filter(i => i.id !== id);
@@ -148,7 +143,6 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// Initial Load
 document.addEventListener('DOMContentLoaded', () => {
   renderCart();
 });
