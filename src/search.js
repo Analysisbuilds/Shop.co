@@ -1,9 +1,10 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // Combine both arrays safely
-  const topList = typeof topSellingProducts !== "undefined" ? topSellingProducts : [];
-  const newList = typeof newArrivalsProducts !== "undefined" ? newArrivalsProducts : [];
-  const allProducts = [...topList, ...newList];
+// Import both product arrays from product.js
+import { topSellingProducts, newArrivalsProducts } from './products.js';
 
+// Combine both arrays into one master list
+const allProducts = [...topSellingProducts, ...newArrivalsProducts];
+
+document.addEventListener("DOMContentLoaded", () => {
   const initSearch = (inputId, dropdownId) => {
     const input = document.getElementById(inputId);
     const dropdown = document.getElementById(dropdownId);
@@ -13,13 +14,14 @@ document.addEventListener("DOMContentLoaded", () => {
     input.addEventListener("input", (e) => {
       const query = e.target.value.trim().toLowerCase();
 
+      // Hide dropdown if input is empty
       if (!query) {
         dropdown.classList.add("hidden");
         dropdown.innerHTML = "";
         return;
       }
 
-      // Match against item.title
+      // Filter products matching title (e.g., 'C', 'Ch', 'Checkered')
       const matches = allProducts.filter((product) =>
         product.title.toLowerCase().includes(query)
       );
@@ -27,14 +29,14 @@ document.addEventListener("DOMContentLoaded", () => {
       renderDropdown(matches, dropdown);
     });
 
-    // Close on click outside
+    // Close dropdown on click outside
     document.addEventListener("click", (e) => {
       if (!input.contains(e.target) && !dropdown.contains(e.target)) {
         dropdown.classList.add("hidden");
       }
     });
 
-    // Re-open when focusing back
+    // Re-open dropdown when focusing back into non-empty input
     input.addEventListener("focus", () => {
       if (input.value.trim().length > 0 && dropdown.children.length > 0) {
         dropdown.classList.remove("hidden");
@@ -74,6 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
     dropdown.classList.remove("hidden");
   };
 
+  // Initialize both Desktop & Mobile search bars
   initSearch("desktop-search-input", "desktop-search-dropdown");
   initSearch("mobile-search-input", "mobile-search-dropdown");
 });
