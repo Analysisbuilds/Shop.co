@@ -1,4 +1,4 @@
-import { newArrivalsProducts, topSellingProducts } from './src/Products.js';
+import { newArrivalsProducts, topSellingProducts } from '../src/Products.js';
 const closeAnnouncementBtn = document.getElementById('close-announcement');
 const announcementBar = document.getElementById('announcement-bar');
 const mobileMenuBtn = document.getElementById('mobile-menu-btn');
