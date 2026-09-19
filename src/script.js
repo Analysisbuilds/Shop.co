@@ -3,6 +3,8 @@ const closeAnnouncementBtn = document.getElementById('close-announcement');
 const announcementBar = document.getElementById('announcement-bar');
 const mobileMenuBtn = document.getElementById('mobile-menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
+const mobileSearchToggle = document.getElementById('mobile-search-toggle');
+const mobileSearchInput = document.getElementById('mobile-search-input');
 
 if (closeAnnouncementBtn && announcementBar) {
   closeAnnouncementBtn.addEventListener('click', () => {
@@ -14,6 +16,15 @@ if (closeAnnouncementBtn && announcementBar) {
 if (mobileMenuBtn && mobileMenu) {
   mobileMenuBtn.addEventListener('click', () => {
     mobileMenu.classList.toggle('hidden');
+  });
+}
+
+if (mobileSearchToggle && mobileMenu) {
+  mobileSearchToggle.addEventListener('click', () => {
+    mobileMenu.classList.remove('hidden');
+    if (mobileSearchInput) {
+      mobileSearchInput.focus();
+    }
   });
 }
 
@@ -35,7 +46,7 @@ function updateCartUI() {
 }
 
 function addToCart(productId) {
-  // Always refresh cart state from localStorage 
+  // to be refreshing cart  from localStorage in real time 
   cart = JSON.parse(localStorage.getItem('cart')) || [];
 
   const allProducts = [...newArrivalsProducts, ...topSellingProducts];
@@ -53,7 +64,7 @@ function addToCart(productId) {
   updateCartUI();
 }
 
-//Generate Star Rating SVG Icons
+// Star for rating
 function renderStars(rating) {
   const fullStars = Math.floor(rating);
   const hasHalfStar = rating % 1 !== 0;
@@ -81,7 +92,7 @@ function renderStars(rating) {
   return starsHTML;
 }
 
-// Rendering Product Cards
+// Product Cards
 function renderProducts(products, containerId) {
   const container = document.getElementById(containerId);
   if (!container) return; // 2 Safely exits if the container doesn't exist
@@ -134,7 +145,7 @@ document.addEventListener('click', (e) => {
     const productId = Number(e.target.getAttribute('data-id'));
     addToCart(productId);
 
-    //  Feedback
+    //  response when added
     const originalText = e.target.textContent;
     e.target.textContent = 'Added!';
     e.target.classList.replace('bg-black', 'bg-emerald-600');

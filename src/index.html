@@ -68,7 +68,7 @@
           <a href="./brands.html" class="hover:text-gray-600 transition-colors">Brands</a>
         </nav>
 
-        <!-- DESKTOP SEARCH BAR -->
+        <!-- Big screen saerch -->
         <div class="hidden md:flex flex-1 max-w-xl">
           <div class="relative w-full">
             <span class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-gray-400">
@@ -83,13 +83,14 @@
               autocomplete="off"
               class="w-full bg-[#f0f0f0] text-sm rounded-full pl-11 pr-4 py-2.5 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300 transition"
             />
-            <!-- DESKTOP DROPDOWN RESULTS -->
-            <div id="desktop-search-dropdown" class="hidden absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl border border-gray-100 max-h-80 overflow-y-auto z-50 divide-y divide-gray-100"></div>
+
+            <div id="desktop-search-dropdown" class="hidden absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-2xl border border-gray-100 max-h-64 overflow-y-auto z-50 divide-y divide-gray-100"></div>
           </div>
         </div>
 
         <div class="flex items-center gap-3 sm:gap-4">
-          <button class="md:hidden text-black hover:text-gray-600 focus:outline-none" aria-label="Search">
+          <!-- Mpbile search -->
+          <button id="mobile-search-toggle" class="md:hidden text-black hover:text-gray-600 focus:outline-none" aria-label="Search">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
             </svg>
@@ -112,12 +113,11 @@
       </div>
     </div>
 
-    <!-- MOBILE MENU & SEARCH -->
     <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white max-h-[calc(100vh-4rem)] overflow-y-auto">
       <div class="px-4 pt-2 pb-6 space-y-3">
         
-        <!-- MOBILE SEARCH BAR -->
-        <div class="relative pt-2 pb-1">
+        <!-- Mobile bar -->
+        <div id="mobile-search-container" class="relative pt-2 pb-1">
           <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
@@ -130,8 +130,8 @@
             autocomplete="off"
             class="w-full bg-[#f0f0f0] text-sm rounded-full pl-9 pr-4 py-2 text-gray-700 placeholder-gray-400 focus:outline-none"
           />
-          <!-- MOBILE DROPDOWN RESULTS -->
-          <div id="mobile-search-dropdown" class="hidden absolute top-full left-0 right-0 mt-1 bg-white rounded-xl shadow-xl border border-gray-100 max-h-60 overflow-y-auto z-50 divide-y divide-gray-100"></div>
+          <!-- search result on mobile-->
+          <div id="mobile-search-dropdown" class="hidden absolute top-full left-0 right-0 mt-1 bg-white rounded-xl shadow-xl border border-gray-100 max-h-52 overflow-y-auto z-50 divide-y divide-gray-100"></div>
         </div>
         
         <details class="relative group">
@@ -172,7 +172,7 @@
             Shop Now
           </a>
         </div>
-            <!-- Hero stats -->
+            <!-- Hero number for trust -->
         <div class="mt-10 lg:mt-12 grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-8 pt-4 border-t border-gray-200/40 sm:border-none">
           <div class="flex flex-col">
             <span class="text-2xl sm:text-4xl font-bold text-black">200+</span>

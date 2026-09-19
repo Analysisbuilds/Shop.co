@@ -1,4 +1,4 @@
-// Import both product arrays from product.js
+// Importing product arrays from product.js
 import { topSellingProducts, newArrivalsProducts } from './products.js';
 
 // Combine both arrays into one master list
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Filter products matching title (e.g., 'C', 'Ch', 'Checkered')
+      // Filter products matching name (Tittle) usre input
       const matches = allProducts.filter((product) =>
         product.title.toLowerCase().includes(query)
       );
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
       renderDropdown(matches, dropdown);
     });
 
-    // Close dropdown on click outside
+    // Close dropdown 
     document.addEventListener("click", (e) => {
       if (!input.contains(e.target) && !dropdown.contains(e.target)) {
         dropdown.classList.add("hidden");
@@ -60,7 +60,8 @@ const renderDropdown = (items, dropdown) => {
   items.forEach((product) => {
     const link = document.createElement("a");
     link.href = `product-detail.html?id=${product.id}`;
-    // Compact padding (py-2 px-3) and clear layout alignment
+
+    //  padding (2 by 3) and clear layout
     link.className = "flex items-center gap-3 px-3 py-2 hover:bg-gray-50 transition-colors cursor-pointer border-b border-gray-100 last:border-b-0";
 
     link.innerHTML = `
@@ -81,7 +82,7 @@ const renderDropdown = (items, dropdown) => {
   dropdown.classList.remove("hidden");
 };
 
-  // Initialize both Desktop & Mobile search bars
+  // Init... Desktop & Mobile search bars
   initSearch("desktop-search-input", "desktop-search-dropdown");
   initSearch("mobile-search-input", "mobile-search-dropdown");
 });
