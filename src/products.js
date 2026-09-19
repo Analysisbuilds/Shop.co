@@ -21,7 +21,7 @@ export const topSellingProducts = [
   {
     id: 103,
     title: "Loose Fit Bermuda Shorts",
-    image: "./Assets/Images/image 10 (1)-Photoroom.png",
+    image: "./Assets/Images/image 9 (1)-Photoroom.png",
     rating: 3.0,
     price: 80,
     originalPrice: null,
@@ -30,7 +30,7 @@ export const topSellingProducts = [
   {
     id: 104,
     title: "Faded Skinny Jeans",
-    image: "./Assets/Images/image 8-Photoroom.png", 
+    image: "./Assets/Images/image 10 (1)-Photoroom.png", 
     rating: 4.5,
     price: 210,
     originalPrice: null,
