@@ -1,7 +1,10 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // Grab array from products.js (supports variable named 'products' or 'productsData')
-  const allProducts = typeof products !== "undefined" ? products : (typeof productsData !== "undefined" ? productsData : []);
+// Import both product arrays from product.js
+import { topSellingProducts, newArrivalsProducts } from './product.js';
 
+// Combine both arrays into one master list
+const allProducts = [...topSellingProducts, ...newArrivalsProducts];
+
+document.addEventListener("DOMContentLoaded", () => {
   const initSearch = (inputId, dropdownId) => {
     const input = document.getElementById(inputId);
     const dropdown = document.getElementById(dropdownId);
@@ -9,21 +12,19 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!input || !dropdown) return;
 
     input.addEventListener("input", (e) => {
-      const searchTerm = e.target.value.trim().toLowerCase();
+      const query = e.target.value.trim().toLowerCase();
 
-      // Clear dropdown if input is empty
-      if (!searchTerm) {
+      // Hide dropdown if input is empty
+      if (!query) {
         dropdown.classList.add("hidden");
         dropdown.innerHTML = "";
         return;
       }
 
-      // Filter products matching name/title/category
-      const matches = allProducts.filter((item) => {
-        const title = (item.name || item.title || "").toLowerCase();
-        const category = (item.category || "").toLowerCase();
-        return title.includes(searchTerm) || category.includes(searchTerm);
-      });
+      // Filter products matching title (e.g., 'C', 'Ch', 'Checkered')
+      const matches = allProducts.filter((product) =>
+        product.title.toLowerCase().includes(query)
+      );
 
       renderDropdown(matches, dropdown);
     });
@@ -57,22 +58,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     items.forEach((product) => {
-      const title = product.name || product.title || "Product";
-      const image = product.image || product.img || "";
-      const price = product.price ? `$${product.price}` : "";
-      const id = product.id || "#";
-
       const link = document.createElement("a");
-      link.href = `product-detail.html?id=${id}`;
+      link.href = `product-detail.html?id=${product.id}`;
       link.className = "flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition-colors cursor-pointer";
 
       link.innerHTML = `
-        ${image ? `<img src="${image}" alt="${title}" class="w-9 h-9 object-cover rounded-md shrink-0" />` : ""}
+        ${product.image ? `<img src="${product.image}" alt="${product.title}" class="w-9 h-9 object-cover rounded-md flex-shrink-0" />` : ""}
         <div class="flex-1 min-w-0">
-          <p class="text-sm font-medium text-gray-900 truncate">${title}</p>
-          ${product.category ? `<p class="text-xs text-gray-400 capitalize">${product.category}</p>` : ""}
+          <p class="text-sm font-medium text-gray-900 truncate">${product.title}</p>
         </div>
-        ${price ? `<span class="text-sm font-bold text-black">${price}</span>` : ""}
+        <span class="text-sm font-bold text-black">$${product.price}</span>
       `;
 
       dropdown.appendChild(link);
@@ -81,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
     dropdown.classList.remove("hidden");
   };
 
-  // Initialize Desktop & Mobile Search
+  // Initialize both Desktop & Mobile search bars
   initSearch("desktop-search-input", "desktop-search-dropdown");
   initSearch("mobile-search-input", "mobile-search-dropdown");
 });
