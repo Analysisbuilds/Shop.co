@@ -47,19 +47,28 @@
             <img src="./Assets/Logos/SHOP.CO.png" alt="shop.co Logo" class="h-8 sm:h-10 w-auto">
           </a>
         </div>
+
         <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-normal">
-          <div class="relative group">
-            <button class="flex items-center gap-1 hover:text-gray-600 focus:outline-none">
+          <details class="relative inline-block group">
+            <summary class="flex items-center gap-1 cursor-pointer hover:text-gray-600 focus:outline-none list-none [&::-webkit-details-marker]:hidden">
               <span>Shop</span>
-              <svg class="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-4 h-4 text-gray-700 transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
               </svg>
-            </button>
-          </div>
-          <a href="#" class="hover:text-gray-600 transition-colors">On Sale</a>
+            </summary>
+            <div class="absolute left-0 mt-2 w-48 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 py-1 z-10">
+              <a href="./Casual.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Casual</a>
+              <a href="./formal.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Formal</a>
+              <a href="./party.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Party</a>
+              <a href="./gym.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Gym</a>
+            </div>
+          </details>
+          <a href="./onsale.html" class="hover:text-gray-600 transition-colors">On Sale</a>
           <a href="#Newarrival" class="hover:text-gray-600 transition-colors whitespace-nowrap">New Arrivals</a>
-          <a href="#" class="hover:text-gray-600 transition-colors">Brands</a>
+          <a href="./brands.html" class="hover:text-gray-600 transition-colors">Brands</a>
         </nav>
+
+        <!-- DESKTOP SEARCH BAR -->
         <div class="hidden md:flex flex-1 max-w-xl">
           <div class="relative w-full">
             <span class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-gray-400">
@@ -68,28 +77,31 @@
               </svg>
             </span>
             <input 
+              id="desktop-search-input"
               type="text" 
               placeholder="Search for products..." 
+              autocomplete="off"
               class="w-full bg-[#f0f0f0] text-sm rounded-full pl-11 pr-4 py-2.5 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300 transition"
             />
+            <!-- DESKTOP DROPDOWN RESULTS -->
+            <div id="desktop-search-dropdown" class="hidden absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl border border-gray-100 max-h-80 overflow-y-auto z-50 divide-y divide-gray-100"></div>
           </div>
         </div>
 
         <div class="flex items-center gap-3 sm:gap-4">
-          <!-- Mobile Search Icon (Only visible on Mobile) -->
           <button class="md:hidden text-black hover:text-gray-600 focus:outline-none" aria-label="Search">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
             </svg>
-          </button>  
-            <a href="cart.html" class="relative text-black hover:text-gray-600 transition-colors" aria-label="Cart">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z"></path>
-              </svg>
-              <span id="cart-count" class="absolute -top-2 -right-2 bg-black text-white text-[10px] font-bold w-5 h-5 rounded-full items-center flex justify-center ">
-                0
-              </span>
-            </a>
+          </button>   
+          <a href="cart.html" class="relative text-black hover:text-gray-600 transition-colors" aria-label="Cart">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z"></path>
+            </svg>
+            <span id="cart-count" class="absolute -top-2 -right-2 bg-black text-white text-[10px] font-bold w-5 h-5 rounded-full items-center flex justify-center">
+              0
+            </span>
+          </a>
           <a href="#" class="text-black hover:text-gray-600 transition-colors" aria-label="Account">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -100,8 +112,11 @@
       </div>
     </div>
 
+    <!-- MOBILE MENU & SEARCH -->
     <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white max-h-[calc(100vh-4rem)] overflow-y-auto">
       <div class="px-4 pt-2 pb-6 space-y-3">
+        
+        <!-- MOBILE SEARCH BAR -->
         <div class="relative pt-2 pb-1">
           <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -109,16 +124,33 @@
             </svg>
           </span>
           <input 
+            id="mobile-search-input"
             type="text" 
             placeholder="Search for products..." 
+            autocomplete="off"
             class="w-full bg-[#f0f0f0] text-sm rounded-full pl-9 pr-4 py-2 text-gray-700 placeholder-gray-400 focus:outline-none"
           />
+          <!-- MOBILE DROPDOWN RESULTS -->
+          <div id="mobile-search-dropdown" class="hidden absolute top-full left-0 right-0 mt-1 bg-white rounded-xl shadow-xl border border-gray-100 max-h-60 overflow-y-auto z-50 divide-y divide-gray-100"></div>
         </div>
         
-        <a href="#" class="block px-3 py-2 text-base font-medium text-gray-900 rounded-md hover:bg-gray-50">Shop</a>
-        <a href="#" class="block px-3 py-2 text-base font-medium text-gray-900 rounded-md hover:bg-gray-50">On Sale</a>
-        <a href="#" class="block px-3 py-2 text-base font-medium text-gray-900 rounded-md hover:bg-gray-50">New Arrivals</a>
-        <a href="#" class="block px-3 py-2 text-base font-medium text-gray-900 rounded-md hover:bg-gray-50">Brands</a>
+        <details class="relative group">
+          <summary class="flex items-center justify-between w-full cursor-pointer list-none [&::-webkit-details-marker]:hidden px-3 py-2 text-base font-medium text-gray-900 rounded-md hover:bg-gray-50">
+            <span>Shop</span>
+            <svg class="w-4 h-4 text-gray-500 transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </summary>
+          <div class="pl-4 mt-1 space-y-1">
+            <a href="#" class="block px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-50 hover:text-gray-900">Casual</a>
+            <a href="#" class="block px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-50 hover:text-gray-900">Formal</a>
+            <a href="#" class="block px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-50 hover:text-gray-900">Party</a>
+            <a href="#" class="block px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-50 hover:text-gray-900">Gym</a>
+          </div>
+        </details>
+        <a href="./onsale.html" class="block px-3 py-2 text-base font-medium text-gray-900 rounded-md hover:bg-gray-50">On Sale</a>
+        <a href="#Newarrivals" class="block px-3 py-2 text-base font-medium text-gray-900 rounded-md hover:bg-gray-50">New Arrivals</a>
+        <a href="./brands.html" class="block px-3 py-2 text-base font-medium text-gray-900 rounded-md hover:bg-gray-50">Brands</a>
       </div>
     </div>
   </header>
@@ -176,6 +208,7 @@
     </div>
   </div>
 </section>
+
         <!-- Brand logoss -->
 <section class="bg-black py-8 sm:py-11 w-full">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -211,7 +244,7 @@
   </div>
 </section>
 
- <!-- NEW ARRIVALS -->
+ <!-- New Arrivals -->
 <section id="Newarrival" class="py-12 bg-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <h2 class="text-3xl sm:text-5xl font-black text-center text-black uppercase mb-8">New Arrivals</h2>
@@ -225,7 +258,7 @@
       </a>
     </div>
 
-<!-- TOP SELLING -->
+<!-- Top sellong -->
 <section class="py-12 bg-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <h2 class="text-3xl sm:text-5xl font-black text-center text-black uppercase mb-8">Top Selling</h2>
@@ -249,7 +282,7 @@
     </h2>
     <div class="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-5">
       <a 
-        href="#" 
+        href="./Casual.html" 
         class="md:col-span-4 relative h-47.5 sm:h-72.25 bg-white rounded-[20px] overflow-hidden group hover:shadow-md transition-shadow"
       >
         <span class="absolute top-4 left-6 sm:top-6 sm:left-9 text-2xl sm:text-4xl font-bold text-black z-10">
@@ -262,7 +295,7 @@
         />
       </a>
       <a 
-        href="#" 
+        href="./formal.html" 
         class="md:col-span-8 relative h-47.5 sm:h-72.25 bg-white rounded-[20px] overflow-hidden group hover:shadow-md transition-shadow"
       >
         <span class="absolute top-4 left-6 sm:top-6 sm:left-9 text-2xl sm:text-4xl font-bold text-black z-10">
@@ -275,7 +308,7 @@
         />
       </a>
       <a 
-        href="#" 
+        href="./party.html" 
         class="md:col-span-8 relative h-47.5 sm:h-72.25 bg-white rounded-[20px] overflow-hidden group hover:shadow-md transition-shadow"
       >
         <span class="absolute top-4 left-6 sm:top-6 sm:left-9 text-2xl sm:text-4xl font-bold text-black z-10">
@@ -288,7 +321,7 @@
         />
       </a>
       <a 
-        href="#" 
+        href="./gym.html" 
         class="md:col-span-4 relative h-47.5 sm:h-72.25 bg-white rounded-[20px] overflow-hidden group hover:shadow-md transition-shadow"
       >
         <span class="absolute top-4 left-6 sm:top-6 sm:left-9 text-2xl sm:text-4xl font-bold text-black z-10">
@@ -372,7 +405,6 @@
     </div>
   </div>
 
-  <!-- footer links -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 sm:-mt-12">
     <div class="grid grid-cols-2 md:grid-cols-12 gap-8 pb-10 border-b border-gray-200">
       <div class="col-span-2 md:col-span-4 flex flex-col gap-5">
@@ -486,5 +518,6 @@
 <script type="module" src="script.js"></script>
 <script type="module" src="products.js"></script>
 <script type="module" src="cart.js"></script>
+<script type="module" src="search.js"></script>
 </body>
 </html>
