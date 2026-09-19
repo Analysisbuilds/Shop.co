@@ -1,5 +1,5 @@
 // TOP SELLING PRODUCTS 
-export const topSellingProducts = [
+const topSellingProducts = [
   {
     id: 101,
     title: "Vertical Striped Shirt",
@@ -39,7 +39,7 @@ export const topSellingProducts = [
 ];
 
 // NEW ARRIVALS PRODUCTS DATA
-export const newArrivalsProducts = [
+const newArrivalsProducts = [
   {
     id: 1,
     title: "T-shirt with Tape Details",
