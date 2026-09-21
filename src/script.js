@@ -95,7 +95,7 @@ function renderStars(rating) {
 // Product Cards
 function renderProducts(products, containerId) {
   const container = document.getElementById(containerId);
-  if (!container) return; // 2 Safely exits if the container doesn't exist
+  if (!container) return; // 2 Safely exits if thez container doesn't exist
 
   container.innerHTML = products.map(product => `
     <div class="flex flex-col group cursor-pointer">
