@@ -59,7 +59,7 @@ const renderDropdown = (items, dropdown) => {
 
   items.forEach((product) => {
     const link = document.createElement("a");
-    link.href = `product-detail.html?id=${product.id}`;
+    link.href = `ProductDetails.html?id=${product.id}`;
 
     //  padding (2 by 3) and clear layout
     link.className = "flex items-center gap-3 px-3 py-2 hover:bg-gray-50 transition-colors cursor-pointer border-b border-gray-100 last:border-b-0";

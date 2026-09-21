@@ -92,25 +92,28 @@ function renderStars(rating) {
   return starsHTML;
 }
 
-// Product Cards
 function renderProducts(products, containerId) {
   const container = document.getElementById(containerId);
-  if (!container) return; // 2 Safely exits if thez container doesn't exist
+  if (!container) return; // Safely exits if container doesn't exist
 
   container.innerHTML = products.map(product => `
     <div class="flex flex-col group cursor-pointer">
-      <div class="bg-[#F0EEED] rounded-2xl sm:rounded-[20px] aspect-square flex items-center justify-center p-4 sm:p-6 overflow-hidden relative">
+      <!-- Image Clickable Area -->
+      <a href="ProductDetails.html?id=${product.id}" class="bg-[#F0EEED] rounded-2xl sm:rounded-[20px] aspect-square flex items-center justify-center p-4 sm:p-6 overflow-hidden relative">
         <img 
           src="${product.image}" 
           alt="${product.title}" 
           class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
         />
-      </div>
+      </a>
 
       <div class="mt-4 flex flex-col grow">
-        <h3 class="text-sm sm:text-base font-bold text-black line-clamp-1">
-          ${product.title}
-        </h3>
+        <!-- Title Clickable Area -->
+        <a href="ProductDetails.html?id=${product.id}">
+          <h3 class="text-sm sm:text-base font-bold text-black line-clamp-1 hover:underline">
+            ${product.title}
+          </h3>
+        </a>
 
         <div class="flex items-center gap-2 mt-1.5">
           <div class="flex items-center gap-0.5">
